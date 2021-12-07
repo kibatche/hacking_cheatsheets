@@ -1,0 +1,6 @@
+[submodule "CheatSheetSeries"]
+	path = CheatSheetSeries
+	url = https://github.com/Batche-Hub/CheatSheetSeries.git
+[submodule "PayloadsAllTheThings"]
+	path = PayloadsAllTheThings
+	url = https://github.com/Batche-Hub/PayloadsAllTheThings.git
