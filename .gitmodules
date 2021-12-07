@@ -4,3 +4,6 @@
 [submodule "PayloadsAllTheThings"]
 	path = PayloadsAllTheThings
 	url = https://github.com/Batche-Hub/PayloadsAllTheThings.git
+[submodule "SecLists"]
+	path = SecLists
+	url = https://github.com/danielmiessler/SecLists
