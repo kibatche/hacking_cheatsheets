@@ -1,0 +1,4 @@
+Perl command Injection :
+
+The open can be used to pass a command in it:
+# ex : “| cat flag.txt |”
