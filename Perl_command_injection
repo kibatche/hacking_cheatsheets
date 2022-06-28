@@ -1,4 +1,4 @@
 Perl command Injection :
 
-The open can be used to pass a command in it:
+The open() function can be used to pass a command :
 # ex : “| cat flag.txt |”
