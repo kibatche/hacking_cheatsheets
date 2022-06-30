@@ -1,4 +1,4 @@
-# Challenges root-me
+# Challenges
 ## Overview
 
 # SUID Shell script, programmes SUID
