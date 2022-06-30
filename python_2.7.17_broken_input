@@ -1,7 +1,9 @@
 Avec python 2.7.17 on peut acceder a n'importe quelle fonction dans le script, ou bien importer une fonction via __import__:
 
 __import__('sys').stdout.write(open("flag.txt", 'r').read())
+__import__('os').system('cat flag.txt> /tmp/flag.txt')
 
+=> GOTO flag.txt
 
 Ou bien :
 
