@@ -22,7 +22,7 @@ try:
 Please enter password : ultrasecret()
 
 PYTHONINSPECT=YesMyLord ./xx
-Please enter password : Whatever !
+Please enter password : blabla !
 Traceback (most recent call last):
 <SNIP>
 >>> f = open("flag")
