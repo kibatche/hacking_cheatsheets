@@ -1,3 +1,7 @@
+
+
+// Advisory : THIS IS NOT my work (lol)! You can check the vuln and everything related to it here : https://github.com/Markakd/DirtyCred
+
 #define _GNU_SOURCE
 
 #include <endian.h>
