@@ -3,7 +3,7 @@
 | `ports=$(nmap -p- --min-rate=1000 -T4 10.10.11.141 | grep ^[0-9] | cut -d '/' -f 1 | tr
 '\n' ',' | sed s/,$//)` |
 
-| nmap -p$ports -sC -sV 10.10.11.141` |
+| `nmap -p$ports -sC -sV 10.10.11.141` |
 
 | **Nmap Option** | **Description** |
 |---|----|
