@@ -1,6 +1,7 @@
 ## [Bash Broken input](#Bash-Broken-input)
-
-
+## [Python 2.17](#Python2.17)
+## [Perl Injection](#Perlinjec)
+Perlinjec
 <a name="Bash-Broken-input"></a>
 Dans un script bash, on peut évaluer des choses même si ces choses là sont dans des ' .
 
@@ -10,6 +11,9 @@ Par contre, bash évalue et expanse ce quil y a à l'intérieur de tableau.
 
 Donc par exemple, si on fait FOO="x[$(echo toto)]" et qu'on fait '$FOO' on aura : toto.
 
+
+
+<a name="Python2.17"></a>
 Avec python 2.7.17 on peut acceder a n'importe quelle fonction dans le script, ou bien importer une fonction via __import__:
 
 __import__('sys').stdout.write(open("flag.txt", 'r').read())
@@ -41,7 +45,7 @@ Traceback (most recent call last):
 >>> print f.readlines()
 ['...']
 
-
+<a name="Perlinjec"></a>
 Perl command Injection :
 
 The open() function can be used to pass a command :
