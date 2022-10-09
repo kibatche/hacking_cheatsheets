@@ -1,7 +1,12 @@
 ## [Bash Broken input](#Bash-Broken-input)
 ## [Python 2.17](#Python2.17)
 ## [Perl Injection](#Perlinjec)
-Perlinjec
+
+
+-------
+
+
+## [Bash Broken input]
 <a name="Bash-Broken-input"></a>
 Dans un script bash, on peut évaluer des choses même si ces choses là sont dans des ' .
 
@@ -14,6 +19,7 @@ Donc par exemple, si on fait FOO="x[$(echo toto)]" et qu'on fait '$FOO' on aura 
 
 
 <a name="Python2.17"></a>
+## [Python 2.17]
 Avec python 2.7.17 on peut acceder a n'importe quelle fonction dans le script, ou bien importer une fonction via __import__:
 
 __import__('sys').stdout.write(open("flag.txt", 'r').read())
@@ -44,7 +50,9 @@ Traceback (most recent call last):
 >>> f = open("flag")
 >>> print f.readlines()
 ['...']
+    
 
+## [Perl Injection]
 <a name="Perlinjec"></a>
 Perl command Injection :
 
