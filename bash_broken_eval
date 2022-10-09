@@ -1,8 +1,2 @@
-Dans un script bash, on peut évaluer des choses même si ces choses là sont dans des ' .
 
-Basiquement, lorsqu'on met une variable comme FOO=42 et qu'on l'invoque avec '$FOO', la réponse sera : $FOO et non pas 42.
-
-Par contre, bash évalue et expanse ce quil y a à l'intérieur de tableau.
-
-Donc par exemple, si on fait FOO="x[$(echo toto)]" et qu'on fait '$FOO' on aura : toto.
 
