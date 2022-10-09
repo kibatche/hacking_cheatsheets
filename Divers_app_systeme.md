@@ -1,7 +1,7 @@
-##[Bash Broken input](#Bash-Broken-input)
+## [Bash Broken input](#Bash-Broken-input)
 
 
-#<a name="Bash-Broken-input"></a>
+<a name="Bash-Broken-input"></a>
 Dans un script bash, on peut évaluer des choses même si ces choses là sont dans des ' .
 
 Basiquement, lorsqu'on met une variable comme FOO=42 et qu'on l'invoque avec '$FOO', la réponse sera : $FOO et non pas 42.
