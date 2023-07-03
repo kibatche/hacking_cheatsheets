@@ -6,7 +6,7 @@
 | `sqlmap 'http://www.example.com/' --data 'uid=1&name=test'`  | `SQLMap` with POST request                                  |
 | `sqlmap 'http://www.example.com/' --data 'uid=1*&name=test'` | POST request specifying an injection point with an asterisk |
 | `sqlmap -r req.txt`                                          | Passing an HTTP request file to `SQLMap`                    |
-| `sqlmap -r req.txt --tamper=space2comment --second-req=sec_request.txt` | Perform a second request where the potential first injection is reflected on the second page |
+| `sqlmap -r req.txt --tamper=tamperscript --second-req=sec_request.txt` | Perform a second request where the potential first injection is reflected on the second page |
 | `sqlmap ... --cookie='PHPSESSID=ab4530f4a7d10448457fa8b0eadac29c'` | Specifying a cookie header                                  |
 | `sqlmap -u www.target.com --data='id=1' --method PUT`        | Specifying a PUT request                                    |
 | `sqlmap -u "http://www.target.com/vuln.php?id=1" --batch -t /tmp/traffic.txt` | Store traffic to an output file                             |
