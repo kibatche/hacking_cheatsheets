@@ -78,7 +78,7 @@
 
 | Oracle | Microsoft | PostgresQL | Mysql | Description |
 | ---- | ---- | ---- | ---- | ---- |
-| ```sql<br>'foo'\|\|'bar'<br>```<br>=> `foobar` | `'foo'+'bar'`<br>=> `foobar` | `'foo'\|\|'bar'`<br>=> `foobar` | `'foo' 'bar'`<br>`CONCAT('foo','bar')`<br>=> `foobar` | Concatenate strings |
+| `'foo'\|\|'bar'`<br>=> `foobar` | `'foo'+'bar'`<br>=> `foobar` | `'foo'\|\|'bar'`<br>=> `foobar` | `'foo' 'bar'`<br>`CONCAT('foo','bar')`<br>=> `foobar` | Concatenate strings |
 | `SUBSTR('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | Extract part of a string. |
 | --comment | --comment<br>/\*comment\*/ | --comment<br>/\*comment\*/ | \#comment<br>-- comment <br>[Note the space after the double dash]<br>/\*comment\*/ | Comments to truncate a query. |
 | `SELECT banner FROM v$version`<br> |  |  |  | Database Version |
